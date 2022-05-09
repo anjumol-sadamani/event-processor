@@ -1,0 +1,8 @@
+BEGIN;
+
+CREATE TABLE IF NOT EXISTS schema ( 
+    id SERIAL PRIMARY KEY,
+    event_schema JSON
+);
+
+COMMIT;
