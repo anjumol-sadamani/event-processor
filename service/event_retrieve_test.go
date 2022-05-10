@@ -190,7 +190,7 @@ func Test_CountEventsByMetaData(t *testing.T) {
 				EventRepo: mockRepo,
 			}
 
-			actualResponse := es.CountEventsByClient([]string{"Client"})
+			actualResponse := es.CountEventsByMetadata([]string{"Client"})
 			assert.Equal(t, test.statusCode, actualResponse.StatusCode)
 			assert.Equal(t, test.result, actualResponse)
 
