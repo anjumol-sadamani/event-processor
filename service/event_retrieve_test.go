@@ -151,7 +151,7 @@ func Test_CountEventsByDay(t *testing.T) {
 
 }
 
-func Test_CountEventsByClient(t *testing.T) {
+func Test_CountEventsByMetaData(t *testing.T) {
 	type testData struct {
 		name        string
 		result      interface{}
@@ -163,7 +163,7 @@ func Test_CountEventsByClient(t *testing.T) {
 		{
 			name: "DB Error",
 			mockClosure: func(mockRepo *MockRepo) {
-				mockRepo.On("CountEventsByClient", mock.Anything, mock.Anything).Return(([]map[string]interface{})(nil), errors.New("DB connection error")).Once()
+				mockRepo.On("CountEventsByMetadata", mock.Anything, mock.Anything).Return(([]map[string]interface{})(nil), errors.New("DB connection error")).Once()
 			},
 			result:     model.FailureResponse("Failed to get count", http.StatusInternalServerError),
 			statusCode: http.StatusInternalServerError,
@@ -172,7 +172,7 @@ func Test_CountEventsByClient(t *testing.T) {
 		{
 			name: "No events",
 			mockClosure: func(mockRepo *MockRepo) {
-				mockRepo.On("CountEventsByClient", mock.Anything, mock.Anything).Return(([]map[string]interface{})(nil), nil).Once()
+				mockRepo.On("CountEventsByMetadata", mock.Anything, mock.Anything).Return(([]map[string]interface{})(nil), nil).Once()
 			},
 			result:     model.FailureResponse("Data not available", http.StatusNotFound),
 			statusCode: http.StatusNotFound,
