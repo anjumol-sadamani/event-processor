@@ -25,10 +25,10 @@
 - Gorm - https://gorm.io/
 
 ## Features Covered
-- Aggregated Schema Usage as API
+- API to get Schema Usage as API
 - Group results by day of month
-- Considered for high throughput using channels for queuing
-- Considered for recursive queries
+- For high throughput use channels for queuing
+- Support recursive queries
 - API for grouping result by Client, Client Version and Data Center
 - Workers implemented using go routines
 
