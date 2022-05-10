@@ -2,8 +2,6 @@
 > An event processing service in go that receives input data from a Kafka Producer, stores data to DB and outputs an aggregated report.
 
 ## Table of Contents
-- [Event Processor](#event-processor)
-  - [Table of Contents](#table-of-contents)
   - [Input Data](#input-data)
   - [Technologies Used](#technologies-used)
   - [Dependencies](#dependencies)
