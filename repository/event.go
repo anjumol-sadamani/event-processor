@@ -62,14 +62,13 @@ func (er *EventRepositoryImpl) GetEventCountByDay(paths []model.SchemaColumn) ([
 }
 
 func (er *EventRepositoryImpl) CountEventsByClient(paths []model.SchemaColumn, groupBy []string) ([]map[string]interface{}, error) {
-	// countQrys := genrateCountAggregateQuery(paths)
+	countQrys := genrateCountAggregateQuery(paths)
+	groupQry := strings.Join(groupBy, ",")
 
-	// var results []map[string]interface{}
-	// er.DB.Table("event").Select(groupBy + "," + strings.Join(countQrys, ",")).Group(groupBy).Find(&results)
+	var results []map[string]interface{}
+	er.DB.Table("event").Select(groupQry + "," + strings.Join(countQrys, ",")).Group(groupQry).Find(&results)
 
-	// return results, nil
-	return nil, nil
-
+	return results, nil
 }
 
 func genrateCountAggregateQuery(paths []model.SchemaColumn) []string {

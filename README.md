@@ -98,19 +98,20 @@
     ```json
     [
     {
+        "client": "client_id",
+        "client_version": "v1",
         "deal": {
-            "price": 378,
-            "title": 345,
-            "user": 345
+            "price": 149,
+            "title": 143,
+            "user": 143
         },
-        "processed_time": "2022-05-10T00:00:00Z",
         "query": {
             "deal": 0,
             "user": 0
         },
         "user": {
             "deals": 0,
-            "name": 199
+            "name": 73
         }
     }
     ]
