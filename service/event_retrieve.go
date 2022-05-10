@@ -13,7 +13,7 @@ import (
 type EventRetrieveService interface {
 	CountEvents() *model.APIResponse
 	CountEventsByDay() *model.APIResponse
-	CountEventsByClient(groupBy []string) *model.APIResponse
+	CountEventsByMetadata(groupBy []string) *model.APIResponse
 }
 
 type EventRetrieveServiceImpl struct {
@@ -51,8 +51,8 @@ func (e *EventRetrieveServiceImpl) CountEventsByDay() *model.APIResponse {
 	return model.SuccessResponse(generateJSONArray(res))
 }
 
-func (e *EventRetrieveServiceImpl) CountEventsByClient(groupBy []string) *model.APIResponse {
-	res, err := e.EventRepo.CountEventsByClient(SchemaList, groupBy)
+func (e *EventRetrieveServiceImpl) CountEventsByMetadata(groupBy []string) *model.APIResponse {
+	res, err := e.EventRepo.CountEventsByMetadata(SchemaList, groupBy)
 
 	if err != nil {
 		return model.FailureResponse("Failed to get count", http.StatusInternalServerError)

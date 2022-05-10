@@ -15,8 +15,8 @@ func InitEventProcessorRoutes(db *gorm.DB, route *gin.Engine) {
 	}
 	health := new(controller.HealthController)
 	groupRoute := route.Group("/event-processor/api/v1")
-	groupRoute.GET("/health", health.GetHealth)
+	groupRoute.GET("/", health.GetHealth)
 	groupRoute.GET("/count", eventController.GetEventsCount)
 	groupRoute.GET("/countByDay", eventController.GetEventsCountByDay)
-	groupRoute.GET("/countByClient", eventController.GetEventsCountByClient)
+	groupRoute.GET("/countByMetadata", eventController.GetEventsCountByClient)
 }

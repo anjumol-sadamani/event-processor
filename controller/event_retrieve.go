@@ -23,7 +23,7 @@ func (ec *EventRetrieveController) GetEventsCountByDay(c *gin.Context) {
 	c.JSON(response.StatusCode, response.Data)
 }
 
-func (ec *EventRetrieveController) GetEventsCountByClient(c *gin.Context) {
+func (ec *EventRetrieveController) GetEventsCountByMetadata(c *gin.Context) {
 
 	groupByParams := c.Request.URL.Query().Get("group_by_tag")
 	if groupByParams == "" {
@@ -34,6 +34,6 @@ func (ec *EventRetrieveController) GetEventsCountByClient(c *gin.Context) {
 
 	groupByTags := strings.Split(groupByParams, ",")
 
-	response := ec.EventRetrieveService.CountEventsByClient(groupByTags)
+	response := ec.EventRetrieveService.CountEventsByMetadata(groupByTags)
 	c.JSON(response.StatusCode, response.Data)
 }

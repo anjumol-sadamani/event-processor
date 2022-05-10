@@ -14,7 +14,7 @@ type EventRepository interface {
 	BulkInsertEvent(dataList []*model.Event) error
 	GetEventCount(paths []model.SchemaColumn) (map[string]interface{}, error)
 	GetEventCountByDay(paths []model.SchemaColumn) ([]map[string]interface{}, error)
-	CountEventsByClient(paths []model.SchemaColumn, groupBy []string) ([]map[string]interface{}, error)
+	CountEventsByMetadata(paths []model.SchemaColumn, groupBy []string) ([]map[string]interface{}, error)
 }
 
 type EventRepositoryImpl struct {
@@ -61,10 +61,9 @@ func (er *EventRepositoryImpl) GetEventCountByDay(paths []model.SchemaColumn) ([
 	return results, nil
 }
 
-func (er *EventRepositoryImpl) CountEventsByClient(paths []model.SchemaColumn, groupBy []string) ([]map[string]interface{}, error) {
+func (er *EventRepositoryImpl) CountEventsByMetadata(paths []model.SchemaColumn, groupBy []string) ([]map[string]interface{}, error) {
 	countQrys := genrateCountAggregateQuery(paths)
 	groupQry := strings.Join(groupBy, ",")
-
 	var results []map[string]interface{}
 	er.DB.Table("event").Select(groupQry + "," + strings.Join(countQrys, ",")).Group(groupQry).Find(&results)
 

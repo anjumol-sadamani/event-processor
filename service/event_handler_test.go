@@ -97,13 +97,16 @@ func (m *MockRepo) BulkInsertEvent(dataList []*model.Event) error {
 }
 
 func (m *MockRepo) GetEventCount(paths []model.SchemaColumn) (map[string]interface{}, error) {
-	return nil, nil
+	args := m.Called(paths)
+	return args.Get(0).(map[string]interface{}), args.Error(1)
 }
 
 func (m *MockRepo) GetEventCountByDay(paths []model.SchemaColumn) ([]map[string]interface{}, error) {
-	return nil, nil
+	args := m.Called(paths)
+	return args.Get(0).([]map[string]interface{}), args.Error(1)
 }
 
-func (m *MockRepo) CountEventsByClient(paths []model.SchemaColumn, groupBy []string) ([]map[string]interface{}, error) {
-	return nil, nil
+func (m *MockRepo) CountEventsByMetadata(paths []model.SchemaColumn, groupBy []string) ([]map[string]interface{}, error) {
+	args := m.Called(paths, groupBy)
+	return args.Get(0).([]map[string]interface{}), args.Error(1)
 }

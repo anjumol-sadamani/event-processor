@@ -3,7 +3,8 @@ package data
 import (
 	"eventprocessor/config"
 	"fmt"
-	"log"
+
+	log "github.com/sirupsen/logrus"
 
 	"github.com/golang-migrate/migrate/v4"
 	_ "github.com/golang-migrate/migrate/v4/database/postgres"
@@ -26,13 +27,13 @@ func Connection() (*gorm.DB, error) {
 
 	db, err := gorm.Open(postgres.Open(DBurl), &gorm.Config{})
 	if err != nil {
-		fmt.Println("Error in Connecting to DB  %w", err)
+	log.Errorf("Error in Connecting to DB  %w", err)
 		return nil, err
 	}
-	fmt.Println("DB Connection successfull")
-	fmt.Println("Running migrations")
+	log.Info("DB Connection successfull")
+	log.Info("Running migrations")
 	runDatabaseMigrations(config)
-	fmt.Println("Migration successfull")
+	log.Info("Migration successfull")
 
 	return db, nil
 }

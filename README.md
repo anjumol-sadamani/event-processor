@@ -92,7 +92,7 @@
 
 3.  Schema Usage by client metadata
    
-    GET - http://localhost:3000/event-processor/api/v1/countByClient
+    GET - http://localhost:3000/event-processor/api/v1/countByMetadata?group_by_tag=client,client_version
 
     Output - 
     ```json

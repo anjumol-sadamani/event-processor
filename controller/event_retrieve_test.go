@@ -252,7 +252,7 @@ func Test_GetEventsCountByClient(t *testing.T) {
 			ec := &EventRetrieveController{
 				EventRetrieveService: mockService,
 			}
-			ec.GetEventsCountByClient(c)
+			ec.GetEventsCountByMetadata(c)
 
 			assert.Equal(t, test.httpStatus, w.Code)
 			if w.Code != http.StatusOK {
@@ -292,7 +292,7 @@ func (m *MockService) CountEventsByDay() *model.APIResponse {
 	return args.Get(0).(*model.APIResponse)
 }
 
-func (m *MockService) CountEventsByClient(groupBy []string) *model.APIResponse {
+func (m *MockService) CountEventsByMetadata(groupBy []string) *model.APIResponse {
 	args := m.Called(groupBy)
 	return args.Get(0).(*model.APIResponse)
 }

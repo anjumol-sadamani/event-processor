@@ -60,6 +60,7 @@ func Start() {
 	wg.Add(3)
 	go el.ProcessEvents()
 	go el.PersistEvents()
+	//Dummy event producer for testing purpose
 	go devMessageProducer(context.Background())
 	router.Run(":" + processorConfig.Port)
 	wg.Wait()
