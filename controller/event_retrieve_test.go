@@ -176,7 +176,7 @@ func Test_GetEventsCountByDay(t *testing.T) {
 	}
 }
 
-func Test_GetEventsCountByClient(t *testing.T) {
+func Test_GetEventsCountByMetadata(t *testing.T) {
 
 	type testData struct {
 		name        string
@@ -213,7 +213,7 @@ func Test_GetEventsCountByClient(t *testing.T) {
 			apiResponse: successResponse,
 			httpStatus:  successResponse.StatusCode,
 			mockClosure: func(mock *MockService) {
-				mock.On("CountEventsByClient", groupByTags).Return(successResponse)
+				mock.On("CountEventsByMetadata", groupByTags).Return(successResponse)
 			},
 			Query: groupByTags[0],
 		},
@@ -222,7 +222,7 @@ func Test_GetEventsCountByClient(t *testing.T) {
 			apiResponse: failureResponse,
 			httpStatus:  failureResponse.StatusCode,
 			mockClosure: func(mock *MockService) {
-				mock.On("CountEventsByClient", groupByTags).Return(failureResponse)
+				mock.On("CountEventsByMetadata", groupByTags).Return(failureResponse)
 			},
 			Query: groupByTags[0],
 		},
@@ -231,7 +231,7 @@ func Test_GetEventsCountByClient(t *testing.T) {
 			apiResponse: badRequestResponse,
 			httpStatus:  badRequestResponse.StatusCode,
 			mockClosure: func(mock *MockService) {
-				mock.On("CountEventsByClient", groupByTags).Return(failureResponse)
+				mock.On("CountEventsByMetadata", groupByTags).Return(failureResponse)
 			},
 		},
 	}
@@ -239,7 +239,7 @@ func Test_GetEventsCountByClient(t *testing.T) {
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
 			w := httptest.NewRecorder()
-			req := httptest.NewRequest("GET", "/event-processor/api/v1/countByClient", nil)
+			req := httptest.NewRequest("GET", "/event-processor/api/v1/countByMetadata", nil)
 			gin.SetMode(gin.TestMode)
 			c, _ := gin.CreateTestContext(w)
 			q := req.URL.Query()
