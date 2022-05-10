@@ -158,8 +158,31 @@ func Test_CountEventsByMetaData(t *testing.T) {
 		mockClosure func(mock *MockRepo)
 		statusCode  int
 	}
+	list := getSampleEventByMetadata()
+	deal := make(map[string]interface{}, 0)
+	deal["price"] = 30
+	deal["title"] = 20
 
+	query := make(map[string]interface{}, 0)
+	query["deal"] = 10
+
+	exp := make(map[string]interface{}, 0)
+	exp["deal"] = deal
+	exp["query"] = query
+	exp["client"] = "client_id"
+
+	expList := make([]interface{}, 0)
+
+	expList = append(expList, exp)
 	tests := []testData{
+		{
+			name: "Success",
+			mockClosure: func(mockRepo *MockRepo) {
+				mockRepo.On("CountEventsByMetadata", mock.Anything, mock.Anything).Return(list, nil).Once()
+			},
+			result:     model.SuccessResponse(expList),
+			statusCode: http.StatusOK,
+		},
 		{
 			name: "DB Error",
 			mockClosure: func(mockRepo *MockRepo) {
@@ -213,6 +236,18 @@ func getSampleEventByDay() []map[string]interface{} {
 	events["data.'deal'.'title'"] = 20
 	events["data.'deal'.'price'"] = 30
 	events["processed_time"] = "2022-05-10T00:00:00Z"
+	list := make([]map[string]interface{}, 0)
+	list = append(list, events)
+
+	return list
+}
+
+func getSampleEventByMetadata() []map[string]interface{} {
+	events := make(map[string]interface{}, 0)
+	events["data.'query'.'deal'"] = 10
+	events["data.'deal'.'title'"] = 20
+	events["data.'deal'.'price'"] = 30
+	events["client"] = "client_id"
 	list := make([]map[string]interface{}, 0)
 	list = append(list, events)
 
