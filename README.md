@@ -38,7 +38,8 @@
 1.  Prerequisites - Docker, Docker Compose
 2.  Clone the repository
 3.  Deploy depended Kafka cluster and Databases using command `docker-compose up` from project root
-4.  GET Endpoints are exposed at http://localhost:3000/event-processor/api/v1/ 
+4.  Run the app using command `go build . && go run main.go` from the project root
+5.  GET Endpoints are exposed at http://localhost:3000/event-processor/api/v1/ 
 
 ## Usage
 

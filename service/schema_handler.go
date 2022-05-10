@@ -47,7 +47,7 @@ func (sh *SchemaHandlerServiceImpl) SaveSchema(inputSchema string) ([]model.Sche
 		log.Errorf("Save schema column error %v", err)
 		return nil, err
 	}
-	fmt.Println("schema saved successfully")
+	log.Info("schema saved successfully")
 	return SchemaList, nil
 }
 
