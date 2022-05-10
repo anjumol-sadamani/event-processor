@@ -5,7 +5,6 @@ import (
 	"errors"
 	"eventprocessor/model"
 	repo "eventprocessor/repository"
-	"fmt"
 	"reflect"
 	"strings"
 
@@ -59,7 +58,6 @@ func parseSchema(schema interface{}, root string, schemaList *[]model.SchemaColu
 		if reflect.TypeOf(element).Kind() == reflect.Map {
 			parseSchema(element, newPath, schemaList)
 		} else {
-			// fmt.Println("Key:", key, "Element:", element, "Path:", newPath)
 			*schemaList = append(*schemaList, model.SchemaColumn{Query: newPath})
 		}
 	}
