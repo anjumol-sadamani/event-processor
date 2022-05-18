@@ -74,6 +74,8 @@ sample output :
 
 Input events to message queue -
 
+1. schema 
+
 ```json
 {
   "Query": {
@@ -92,6 +94,7 @@ Input events to message queue -
 }
 ```
 
+2. Multiple queries
 ```json
 {
   "deal": {
