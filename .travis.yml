@@ -1,0 +1,15 @@
+language: go
+
+go:
+- "1.18"
+
+jobs:
+  include:
+    - stage: compile
+    - stage: deploy
+      script: skip
+      deploy:
+        provider: heroku
+        api_key: $HEROKU_API_KEY
+        app: tranquil-reaches-88605
+
